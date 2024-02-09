@@ -1,3 +1,4 @@
+#models.py
 from django.db import models
 
 from users.models import UserProfile
@@ -30,12 +31,13 @@ class Institution(models.Model):
     longitude = models.CharField(verbose_name="Longitude", max_length=50, null=True, blank=True)
     latitude = models.CharField(verbose_name="Latitude", max_length=50, null=True, blank=True)
     reviews = models.ManyToManyField(UserReview, blank=True)
+    review_summary=models.CharField(max_length=300,null=False,blank=False)
 
     def __str__(self):
         return self.institution_name
 
 
-    # Add a method to get all insurances for an institution
+    # Add a method to get all insuraPharm/hospitals/models.pynces for an institution
     def get_insurances(self):
         return self.insurances.all()
 

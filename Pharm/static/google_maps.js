@@ -18,19 +18,19 @@ function initMap() {
 
 }
 
-const waypts = [
+/*const waypts = [
         {location: {lat: lat_c, lng: long_c},
         stopover: true},
         {location: {lat: lat_d, lng: long_d},
         stopover: true}
-        ];
+        ];*/
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     directionsService.route({
         origin: origin,
-        destination: destination,
+        /*destination: destination,
         waypoints: waypts,
-        optimizeWaypoints: true,
+        optimizeWaypoints: true,*/
         travelMode: google.maps.TravelMode.DRIVING,
     }, function(response, status) {
       if (status === 'OK') {

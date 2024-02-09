@@ -5,7 +5,10 @@ $.getScript( "https://maps.googleapis.com/maps/api/js?key=" + google_api_key + "
 
 })
 
-var auto_fields = ['a', 'b', 'c', 'd']
+//var auto_fields = ['a', 'b', 'c', 'd']
+var auto_fields = ['a','b']
+
+// function to initialize Google Places Autocomplete API on a form field
 
 function initAutocomplete() {
 
@@ -25,12 +28,12 @@ function initAutocomplete() {
   autocomplete_b.addListener('place_changed', function(){
           onPlaceChanged('b')
       });
-  autocomplete_c.addListener('place_changed', function(){
-          onPlaceChanged('c')
-      });
-  autocomplete_d.addListener('place_changed', function(){
-          onPlaceChanged('d')
-      });
+ // autocomplete_c.addListener('place_changed', function(){
+       //   onPlaceChanged('c')
+     // });
+  //autocomplete_d.addListener('place_changed', function(){
+        //  onPlaceChanged('d')
+     // });
 }
 
 
@@ -79,10 +82,10 @@ function CalcRoute(){
           long_a: $('#id-long-a').val(),
           lat_b: $('#id-lat-b').val(),
           long_b: $('#id-long-b').val(),
-          lat_c: $('#id-lat-c').val(),
-          long_c: $('#id-long-c').val(),
-          lat_d: $('#id-lat-d').val(),
-          long_d: $('#id-long-d').val(),
+         // lat_c: $('#id-lat-c').val(),
+         // long_c: $('#id-long-c').val(),
+         // lat_d: $('#id-lat-d').val(),
+         // long_d: $('#id-long-d').val(),
       };
 
       var esc = encodeURIComponent;
