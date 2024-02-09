@@ -1,143 +1,167 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container">
-        <style>
-            /* Styling for the container */
-            .container {
-                margin-top: 20px;
-                padding: 20px;
-                border: 2px solid #666;
-                border-radius: 10px;
-                background-color: #000;
-                color: #fff;
-                font-family: 'Gothic', sans-serif;
-                animation: pulse 2s infinite;
-            }
+<div class="container">
+    <style>
+        /* Styling for the container */
+        .container {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #666;
+            border-radius: 10px;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Gothic', sans-serif;
+            animation: pulse 2s infinite;
+        }
 
-            /* Animation for container */
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-                100% { transform: scale(1); }
-            }
+        /* Animation for container */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-            /* Styling for headings */
-            h1, h2 {
-                text-align: center;
-                font-size: 36px;
-                margin-bottom: 20px;
-                color: #ff6666;
-            }
+        /* Styling for headings */
+        h1, h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff6666;
+        }
 
-            /* Styling for reviews */
-            #reviewsContainer {
-                background-color: #333;
-                padding: 10px;
-                border-radius: 10px;
-                margin-top: 20px;
-            }
+        /* Styling for reviews */
+        #reviewsContainer {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
 
-            #reviewsContainer div {
-                background-color: #666;
-                padding: 10px;
-                margin-bottom: 10px;
-                border-radius: 5px;
-            }
+        #reviewsContainer div {
+            background-color: #666;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
 
-            /* Styling for review form */
-            #reviewForm {
-                margin-top: 20px;
-                padding: 10px;
-                border: 2px solid #666;
-                border-radius: 10px;
-                background-color: #333;
-            }
+        /* Styling for review form */
+        #reviewForm {
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid #666;
+            border-radius: 10px;
+            background-color: #333;
+        }
 
-            #reviewForm textarea {
-                width: 100%;
-                padding: 5px;
-                margin-bottom: 10px;
-                border-radius: 5px;
-                background-color: #666;
-                color: #fff;
-            }
+        #reviewForm textarea {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #666;
+            color: #fff;
+        }
 
-            #reviewForm button {
-                background-color: #ff6666;
-                color: #fff;
-                padding: 5px 10px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-            }
+        #reviewForm button {
+            background-color: #ff6666;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-            #reviewForm button:hover {
-                background-color: #ff0044;
-            }
+        #reviewForm button:hover {
+            background-color: #ff0044;
+        }
 
-            /* Styling for map */
-            #map {
-                height: 400px;
-                background-color: #666;
-                margin-top: 20px;
-                border-radius: 10px;
-            }
+        /* Styling for map */
+        #map {
+            height: 400px;
+            background-color: #666;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
 
-            /* Styling for autocomplete input */
-            .pac-container {
-                background-color: #333;
-                color: #fff;
-                border-radius: 5px;
-                z-index: 1000; /* Ensure autocomplete appears above other elements */
-            }
+        /* Styling for autocomplete input */
+        .pac-container {
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+            z-index: 1000; /* Ensure autocomplete appears above other elements */
+        }
 
-            .pac-item {
-                padding: 10px;
-                cursor: pointer;
-            }
+        .pac-item {
+            padding: 10px;
+            cursor: pointer;
+        }
 
-            .pac-item:hover {
-                background-color: #555;
-            }
-        </style>
+        .pac-item:hover {
+            background-color: #555;
+        }
 
-        <h1>{{ institution.institution_name }}</h1>
+        /* Styling for clickable institutions */
+        .institution {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
 
-        <!-- Reviews section -->
-        <div id="reviewsContainer">
-            <h2>Reviews</h2>
-            <!-- Display existing reviews here -->
-            {% for review in institution.reviews.all %}
-                <div>{{ review.review }}</div>
-            {% endfor %}
-        </div>
+        .institution:hover {
+            background-color: #666;
+        }
+    </style>
 
-        <!-- Review form section -->
-        <form id="reviewForm" method="post" action="{% url 'institution_detail' institution.id %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <!-- Input field for address -->
-            <input type="text" id="id-google-address" placeholder="Enter address">
-            <textarea id="reviewText" name="reviewText" rows="4" cols="50" placeholder="Enter your review"></textarea><br>
-            <button type="submit">Submit Review</button>
-        </form>
+    <h1>{{ institution_name }}</h1>
 
-        <!-- Nearby Hospitals -->
-        <h2>Nearby Hospitals</h2>
-        <div id="map"></div>
+    <!-- Reviews section -->
+    <div id="reviewsContainer">
+        <h2>Reviews</h2>
+        <!-- Display existing reviews here -->
+        {% for review in reviews %}
+        <div>{{ review }}</div>
+        {% endfor %}
     </div>
 
-    <!-- Include jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Review form section -->
+    <!-- Review form section -->
+<form id="reviewForm" method="post" action="{% url 'review_submit' institution.id %}">
+    {% csrf_token %}
+    <!-- Hidden input field for institution ID -->
+    <input type="hidden" id="institutionId" name="institutionId" value="{{ institution.id }}">
+    <!-- Input field for address -->
+    <input type="text" id="id-google-address" placeholder="Enter address">
+    <!-- Textarea for review -->
+    <textarea id="reviewText" name="reviewText" rows="4" cols="50" placeholder="Enter your review"></textarea><br>
+    <!-- Submit button -->
+    <button type="submit">Submit Review</button>
+</form>
 
-    <!-- Include Google Maps API script -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
-    <script type="text/javascript">
-        var google_api_key = "{{ google_api_key|safe }}";
-        var base_country = "{{ base_country|safe }}";
-    </script>
-    <script src="{% static 'hospitals.js' %}"></script>
-    <script src="{% static 'google_places.js' %}"></script>
+
+    <!-- Nearby Hospitals -->
+    <h2>Nearby Hospitals</h2>
+    <div id="map"></div>
+    <div id="institutionsList">
+        <!-- Render institutions as clickable divs -->
+        {% for institution in institutions %}
+        <div class="institution" data-id="{{ institution.id }}">{{ institution.name }}</div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Include jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Include Google Maps API script -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
+<script type="text/javascript">
+    var google_api_key = "{{ google_api_key|safe }}";
+    var base_country = "{{ base_country|safe }}";
+</script>
+<script src="{% static 'hospitals.js' %}"></script>
+<script src="{% static 'google_places.js' %}"></script>
 {% endblock %}
