@@ -18,6 +18,12 @@
   {% else %}
   <li><a href="{% url 'main:route' %}">Route</a></li>
   {% endif %}
+  {% if "route" in request.path %}
+  <li><a class="active" href="{% url 'hospital:hospital_details' %}">Hospice</a></li>
+  {% else %}
+  <li><a href="{% url 'hospital:hospital_details' %}">Hospice</a></li>
+  {% endif %}
+
 
   {% if "map" in request.path %}
   <li><a class="active" href="{% url 'main:map' %}">Map</a></li>
