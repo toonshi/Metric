@@ -10,7 +10,7 @@ from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
 
 
-from Pharm.Pharm.mixins import(
+from Pharm.mixins import(
 	AjaxFormMixin, 
 	reCAPTCHAValidation,
 	FormErrors,

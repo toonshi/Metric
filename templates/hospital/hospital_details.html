@@ -7,39 +7,33 @@
         .container {
             margin-top: 20px;
             padding: 20px;
-            border: 2px solid #666;
+            border: 2px solid #ccc;
             border-radius: 10px;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Gothic', sans-serif;
-            animation: pulse 2s infinite;
-        }
-
-        /* Animation for container */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            background-color: #f8f8f8;
+            color: #333;
+            font-family: 'Roboto', Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         /* Styling for headings */
         h1, h2 {
             text-align: center;
-            font-size: 36px;
+            font-size: 28px;
             margin-bottom: 20px;
-            color: #ff6666;
+            color: #333;
         }
 
         /* Styling for reviews */
         #reviewsContainer {
-            background-color: #333;
-            padding: 10px;
+            background-color: #f0f0f0;
+            padding: 15px;
             border-radius: 10px;
             margin-top: 20px;
         }
 
         #reviewsContainer div {
-            background-color: #666;
+            background-color: #e0e0e0;
             padding: 10px;
             margin-bottom: 10px;
             border-radius: 5px;
@@ -48,29 +42,32 @@
         /* Styling for review form */
         #reviewForm {
             margin-top: 20px;
-            padding: 10px;
-            border: 2px solid #666;
+            padding: 15px;
+            border: 2px solid #ccc;
             border-radius: 10px;
-            background-color: #333;
+            background-color: #f0f0f0;
         }
 
         #reviewForm textarea {
             width: 100%;
-            padding: 5px;
+            padding: 10px;
             margin-bottom: 10px;
             border-radius: 5px;
-            background-color: #666;
-            color: #fff;
+            background-color: #e0e0e0;
+            color: #333;
+            resize: none;
         }
 
         #reviewForm button {
             background-color: #ff6666;
             color: #fff;
-            padding: 5px 10px;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
         }
 
         #reviewForm button:hover {
@@ -80,39 +77,36 @@
         /* Styling for map */
         #map {
             height: 400px;
-            background-color: #666;
+            background-color: #e0e0e0;
             margin-top: 20px;
             border-radius: 10px;
-        }
-
-        /* Styling for autocomplete input */
-        .pac-container {
-            background-color: #333;
-            color: #fff;
-            border-radius: 5px;
-            z-index: 1000; /* Ensure autocomplete appears above other elements */
-        }
-
-        .pac-item {
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .pac-item:hover {
-            background-color: #555;
         }
 
         /* Styling for clickable institutions */
         .institution {
             cursor: pointer;
             padding: 10px;
-            background-color: #444;
+            background-color: #f0f0f0;
             border-radius: 5px;
             margin-bottom: 10px;
         }
 
         .institution:hover {
-            background-color: #666;
+            background-color: #e0e0e0;
+        }
+        
+        /* Color Accents */
+        .accent-btn {
+            background-color: #ff6666;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .accent-btn:hover {
+            background-color: #ff0044;
         }
     </style>
 
@@ -128,19 +122,17 @@
     </div>
 
     <!-- Review form section -->
-    <!-- Review form section -->
-<form id="reviewForm" method="post" action="{% url 'review_submit' institution.id %}">
-    {% csrf_token %}
-    <!-- Hidden input field for institution ID -->
-    <input type="hidden" id="institutionId" name="institutionId" value="{{ institution.id }}">
-    <!-- Input field for address -->
-    <input type="text" id="id-google-address" placeholder="Enter address">
-    <!-- Textarea for review -->
-    <textarea id="reviewText" name="reviewText" rows="4" cols="50" placeholder="Enter your review"></textarea><br>
-    <!-- Submit button -->
-    <button type="submit">Submit Review</button>
-</form>
-
+    <form id="reviewForm" method="post" action="{% url 'review_submit' institution.id %}">
+        {% csrf_token %}
+        <!-- Hidden input field for institution ID -->
+        <input type="hidden" id="institutionId" name="institutionId" value="{{ institution.id }}">
+        <!-- Input field for address -->
+        <input type="text" id="id-google-address" placeholder="Enter address">
+        <!-- Textarea for review -->
+        <textarea id="reviewText" name="reviewText" rows="4" cols="50" placeholder="Enter your review"></textarea><br>
+        <!-- Submit button -->
+        <button type="submit" class="accent-btn">Submit Review</button>
+    </form>
 
     <!-- Nearby Hospitals -->
     <h2>Nearby Hospitals</h2>

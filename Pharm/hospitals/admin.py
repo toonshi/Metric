@@ -1,14 +1,4 @@
 from django.contrib import admin
-
-# Register your models here.
-from .models import Service, Insurance
-
-admin.site.register(Service)
-admin.site.register(Insurance)
-
-# hospitals/admin.py
-
-from django.contrib import admin
 from .models import Service, Insurance
 
 @admin.register(Service)
