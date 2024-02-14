@@ -6,6 +6,7 @@ from hospitals.views import review_submit  # Correct import statement for the re
 
 urlpatterns = [
     path('', include('main.urls', namespace="main")),
+    path('', include('hospitals.urls', namespace="main")),
     path('', include('users.urls', namespace="users")),
     path('admin/', admin.site.urls),
     # Use the correct import statement for the review_submit view

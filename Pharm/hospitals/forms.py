@@ -49,7 +49,7 @@ from .models import UserReview
 class UserReviewForm(forms.ModelForm):
     class Meta:
         model = UserReview
-        fields = ['review']
+        fields = ['institution','review','review_image']
 
 
 

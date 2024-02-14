@@ -1,3 +1,4 @@
+#models.py
 from django.db import models
 from users.models import UserProfile  # Ensure correct import paths
 
@@ -28,7 +29,7 @@ class Institution(models.Model):
     country = models.CharField(verbose_name="Country", max_length=100, null=True, blank=True)
     longitude = models.CharField(verbose_name="Longitude", max_length=50, null=True, blank=True)
     latitude = models.CharField(verbose_name="Latitude", max_length=50, null=True, blank=True)
-
+    image = models.ImageField(upload_to='images/')
     def __str__(self):
         return self.institution_name
 
@@ -46,6 +47,7 @@ class UserReview(models.Model):
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='hospitals_user_reviews')
     review = models.TextField()
+    review_image = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return f"{self.review} - {self.institution.institution_name}"

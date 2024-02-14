@@ -104,7 +104,7 @@ input[type=text], input[type=email], input[type=password], select, textarea {
   font-family: 'Courier Prime', monospace;
 }
 
-select.selection option,
+select.selection option
 {
   color: #c408088c;
   font-family: 'Courier Prime', monospace;
@@ -312,4 +312,71 @@ input, select,
 input:hover,
 .btn:hover {
   opacity: 1;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.item {
+  position: relative;
+  flex: 0 0 calc(20% - 20px); /* Adjust the percentage and subtract margin */
+  margin: 10px;
+  background-color: #e5f2e5; /* Light green background */
+  border-radius: 8px; /* Add border radius for rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  transition: opacity 0.3s ease; /* Add transition for opacity change */
+}
+
+.item:hover {
+  opacity: 0.8; /* Reduce opacity on hover */
+}
+
+.thumbnail {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio (height: 0) */
+  overflow: hidden;
+}
+
+.thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 8px;
+  background-color: rgba(138, 70, 70, 0.5); /* Transparent black background */
+}
+
+.overlay p {
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  margin: 0;
+}
+
+.blur {
+  filter: blur(5px); /* Apply blur effect */
+}
+
+.institution {
+  display: none; /* Initially hide the institution details */
+  position: fixed; /* Position the details container */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center the container */
+  z-index: 1000; /* Ensure it's above the blurred background */
+  background: white; /* Set background color */
+  padding: 20px; /* Add padding */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow */
 }
