@@ -1,3 +1,4 @@
+# mixins.py
 from django.conf import settings
 from django.shortcuts import redirect
 from urllib.parse import urlencode
@@ -80,21 +81,21 @@ def Directions(*args, **kwargs):
 	long_a = kwargs.get("long_a")
 	lat_b = kwargs.get("lat_b")
 	long_b = kwargs.get("long_b")
-	lat_c = kwargs.get("lat_c")
-	long_c = kwargs.get("long_c")
-	lat_d = kwargs.get("lat_d")
-	long_d = kwargs.get("long_d")
+	# lat_c = kwargs.get("lat_c")
+	# long_c = kwargs.get("long_c")
+	# lat_d = kwargs.get("lat_d")
+	# long_d = kwargs.get("long_d")
 
 	origin = f'{lat_a},{long_a}'
 	destination = f'{lat_b},{long_b}'
-	waypoints = f'{lat_c},{long_c}|{lat_d},{long_d}'
+	# waypoints = f'{lat_c},{long_c}|{lat_d},{long_d}'
 
 	result = requests.get(
 		'https://maps.googleapis.com/maps/api/directions/json?',
 		 params={
 		 'origin': origin,
 		 'destination': destination,
-		 'waypoints': waypoints,
+		#  'waypoints': waypoints,
 		 "key": settings.GOOGLE_API_KEY
 		 })
 

@@ -1,4 +1,4 @@
-
+// google_maps.js
 $.getScript( "https://maps.googleapis.com/maps/api/js?key=" + google_api_key + "&libraries=places") 
 .done(function( script, textStatus ) {
     google.maps.event.addDomListener(window, "load", initMap)
@@ -28,9 +28,9 @@ function initMap() {
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     directionsService.route({
         origin: origin,
-        /*destination: destination,
-        waypoints: waypts,
-        optimizeWaypoints: true,*/
+        destination: destination,
+        // waypoints: waypts,
+        // optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.DRIVING,
     }, function(response, status) {
       if (status === 'OK') {

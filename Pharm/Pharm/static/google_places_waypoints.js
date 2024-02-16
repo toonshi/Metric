@@ -1,4 +1,4 @@
-
+// google_places_waypoints.js
 $.getScript( "https://maps.googleapis.com/maps/api/js?key=" + google_api_key + "&libraries=places") 
 .done(function( script, textStatus ) {
     google.maps.event.addDomListener(window, "load", initAutocomplete())

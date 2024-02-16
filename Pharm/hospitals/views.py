@@ -86,6 +86,9 @@ def institution_detail(request, institution_id):
         'reviews': reviews,
         'services': services,
         'form': form,
+        'latitude': institution.latitude,  # Pass latitude value
+        'longitude': institution.longitude,  # Pass longitude value
+
     }
     return render(request, 'reason.html', context)
 

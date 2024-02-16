@@ -63,7 +63,12 @@
 <div class="institution">
   <h1>{{ institution.institution_name }}</h1>
   <img src="{{ institution.image.url }}" alt="{{ institution.institution_name }}">
-  
+  <div class="map-container">
+
+    <div id="map-route"></div>
+ 
+ 
+ </div>
   <!-- Display insurance information -->
   {% if insurances %}
     <h2>Insurances</h2>
@@ -99,6 +104,8 @@
   {% for insurance in insurances %}
     <p>{{ insurance.insurance_name }}</p>
   {% endfor %}
+  <input type="hidden" id="institution-lat" value="{{ institution.latitude }}">
+  <input type="hidden" id="institution-lng" value="{{ institution.longitude }}">
   <form method="post" enctype="multipart/form-data" action="/institution">
     {% csrf_token %}
     <table>
@@ -177,7 +184,7 @@
 
 </script>
 <script src="{% static 'google_places_waypoints.js' %}"></script>
-<script src="{% static 'google_maps.js' %}"></script>
+<script src="{% static 'hospital_maps.js' %}"></script>
 {% endblock %}
 <!-- </body>
 </html> -->

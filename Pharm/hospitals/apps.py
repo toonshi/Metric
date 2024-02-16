@@ -8,3 +8,5 @@ class HospitalsConfig(AppConfig):
 
     def ready(self):
         import hospitals.signals  # Import signals module
+        from . import location
+        location.run_script()
