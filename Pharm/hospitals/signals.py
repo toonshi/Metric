@@ -1,10 +1,11 @@
-#signals.py
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_migrate
 from django.dispatch import receiver
+
+# Ensure correct import paths for UserReview, Institution, and location
 from .models import UserReview, Institution
-from django.db.models.signals import post_migrate
-from django.apps import apps
-from . import location
+from . import location  # Import location module
+
+# Correct indentation for the receiver decorator
 @receiver(post_save, sender=UserReview)
 def update_review_summary(sender, instance, created, **kwargs):
     if created or instance.review != instance._original_review:
@@ -13,7 +14,6 @@ def update_review_summary(sender, instance, created, **kwargs):
         reviews_text = [review.review for review in reviews]
         institution.review_summary = summarize_reviews(reviews_text)  # Update review summary
         institution.save()
-
 
 def summarize_reviews(reviews):
     # Implement your summarization logic here

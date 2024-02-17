@@ -39,25 +39,25 @@ def institution_detail(request, institution_id):
 #     else:
 #         form = UserReviewForm()
 #     return render(request, 'institution_detail.html', {'institution': institution, 'form': form})
-
-
-# def review_submit(request, institution_id):
-#     if request.method == 'POST':
-#         form = UserReviewForm(request.POST)
-#         if form.is_valid():
-#             # Associate the review with the correct institution
-#             institution = Institution.objects.get(pk=institution_id)
-#             review = form.save(commit=False)
-#             review.institution = institution
-#             review.save()
-#             return redirect('success_page')  # Redirect to a success page
-#     else:
-#         form = UserReviewForm()
-#     return render(request, 'review_submit.html', {'form': form})
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from .forms import UserReviewForm
 from .models import Institution, Insurance, UserReview, Service
+
+def review_submit(request, institution_id):
+    if request.method == 'POST':
+        form = UserReviewForm(request.POST)
+        if form.is_valid():
+            # Associate the review with the correct institution
+            institution = Institution.objects.get(pk=institution_id)
+            review = form.save(commit=False)
+            review.institution = institution
+            review.save()
+            return redirect('success_page')  # Redirect to a success page
+    else:
+        form = UserReviewForm()
+    return render(request, 'reason.html', {'form': form})
+
 
 def institution_detail(request, institution_id):
     # Retrieve the institution

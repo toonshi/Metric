@@ -1,7 +1,4 @@
-#models.py
 from django.db import models
-from users.models import UserProfile  # Ensure correct import paths
-
 
 class Insurance(models.Model):
     institution = models.ForeignKey('Institution', on_delete=models.CASCADE, related_name='insurances')
@@ -16,7 +13,7 @@ class Insurance(models.Model):
 
 
 class Institution(models.Model):
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.PROTECT, related_name='userprofiles')
+    user_profile = models.ForeignKey('users.UserProfile', on_delete=models.PROTECT, related_name='userprofiles')
     institution_id = models.AutoField(primary_key=True, verbose_name="InstitutionId", unique=True)
     institution_name = models.CharField(verbose_name="InstitutionName", max_length=255)
 
@@ -30,6 +27,7 @@ class Institution(models.Model):
     longitude = models.CharField(verbose_name="Longitude", max_length=50, null=True, blank=True)
     latitude = models.CharField(verbose_name="Latitude", max_length=50, null=True, blank=True)
     image = models.ImageField(upload_to='images/')
+    
     def __str__(self):
         return self.institution_name
 
@@ -45,10 +43,9 @@ class Service(models.Model):
 
 class UserReview(models.Model):
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='hospitals_user_reviews')
+    user = models.ForeignKey('users.UserProfile', on_delete=models.CASCADE, related_name='hospitals_user_reviews')
     review = models.TextField()
     review_image = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return f"{self.review} - {self.institution.institution_name}"
-
